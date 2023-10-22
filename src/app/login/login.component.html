@@ -1,0 +1,105 @@
+<div class="container">
+    <div *ngIf="showLogin" class="content">
+        <p>Welcome to the onboarding page</p>
+        <button (click)="navigateToLogin()" class="btn btn-primary">Click here to begin</button>
+    </div>
+    <!-- login form -->
+    <div *ngIf="!showLogin" class="form-content">
+        <img src="../../assets/logo.PNG">
+        <div class="step-indicator">
+            <div class="step">
+                <div class="active-step-number" id="step-1">1</div>
+                <div class="active-connecting-line"></div>
+            </div>
+            <div class="step">
+                <div class="connecting-line line-2"></div>
+                <div class="step-number" id="step-2">2</div>
+                <div class="connecting-line line-2"></div>
+            </div>
+            <div class="step">
+                <div class="connecting-line line-3"></div>
+                <div class="step-number" id="step-3">3</div>
+                <div class="connecting-line line-3"></div>
+            </div>
+            <div class="step no-padding">
+                <div class="connecting-line line-4"></div>
+                <div class="step-number" id="step-4">4</div>
+            </div>
+        </div>
+        <!--  step 1 -->
+        <div *ngIf="step === 1">
+            <div class="centered-content">
+                <p>Welcome, First things first, let start....</p>
+                <p class="subtitle">You can always change them later</p>
+            </div>
+            <form [formGroup]="onBoardingForm" (ngSubmit)="goToNextStep(2)">
+                <div class="form-group">
+                    <label class="form-label" for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="Steve Jobs" formControlName="firstName"
+                        class="form-control" [ngClass]="{'error-border': formSubmitted && onBoardingForm.get('firstName')?.invalid && onBoardingForm.get('firstName')?.touched}">
+                    <div *ngIf="formSubmitted && onBoardingForm.get('firstName')?.hasError('required')" class="error-message">firstName is required</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="displayName">Display Name</label>
+                    <input type="text" id="displayName" placeholder="Steve" formControlName="displayName"
+                        class="form-control" [ngClass]="{'error-border': formSubmitted && onBoardingForm.get('firstName')?.invalid && onBoardingForm.get('firstName')?.touched}">
+                        <div *ngIf="formSubmitted && onBoardingForm.get('displayName')?.hasError('required')" class="error-message">displayName is required</div>
+                </div>
+                <button type="submit" (click)="activeForm = 'onBoardingForm'" class="btn btn-primary">Create Workspace</button>
+            </form>
+        </div>
+
+        <!-- Step 2 Content -->
+        <div *ngIf="step === 2" class="form-content">
+            <div class="centered-content">
+                <p>Let's set up a home for all your work</p>
+                <p class="subtitle">You can always create another workspace later.</p>
+            </div>
+            <form [formGroup]="workspaceForm" (ngSubmit)="goToNextStep(3)">
+                <div class="form-group">
+                    <label class="form-label" for="workspaceName">Workspace Name</label>
+                    <input type="text" id="workspaceName" placeholder="Eden" formControlName="workspaceName"
+                        class="form-control" [ngClass]="{'error-border': workspaceForm.get('workspaceName')?.invalid && workspaceForm.get('workspaceName')?.touched}">
+                        <div *ngIf="formSubmitted && workspaceForm.get('workspaceName')?.hasError('required')" class="error-message">workspaceName is required</div>
+                    </div>
+                <div class="form-group">
+                    <label class="form-label" for="workspaceURL">Workspace URL (Optional)</label>
+                    <input type="text" id="workspaceURL" placeholder="www.eden.com/  Example"
+                        formControlName="workspaceURL" class="form-control">
+                </div>
+                <button type="submit" (click)="activeForm = 'workspaceForm'" class="btn btn-primary">Create Workspace</button>
+            </form>
+        </div>
+
+        <!-- Step 3 Content -->
+        <div *ngIf="step === 3" class="form-content">
+            <div class="centered-content">
+                <p>How are you planning to use Eden?</p>
+                <p class="subtitle">You can always change them later</p>
+            </div>
+            <div class="card-container">
+                <div class="card" *ngFor="let card of cardList; let i = index" [attr.id]="'card-' + (i + 1)" (click)="selectCard($event)">
+                  <a href="javascript:void(0);"></a>
+                  <div>
+                    <i [ngClass]="card.icon" class="custom-icon"></i>
+                    <p>{{ card.title }}</p>
+                    <div class="card-body">
+                      {{ card.description }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary" (click)="goToNextStep(4)">Create Workspace</button>
+        </div>
+
+        <!-- Step 4 Content -->
+        <div *ngIf="step === 4" class="form-content">
+            <div class="centered-content">
+                <img src="../../assets/complete.PNG">
+                <p style="margin-top: 20px;">Congratulations, {{currentUser.firstName}}!</p>
+                <p class="subtitle">You have completed onboarding, you can start using Eden!</p>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="startAgain()">Complete</button>
+        </div>
+    </div>
+</div>

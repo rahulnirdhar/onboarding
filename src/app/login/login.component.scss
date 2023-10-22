@@ -1,0 +1,163 @@
+p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .content {
+    text-align: center;
+  }
+
+//   step indicator
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 40px;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    color: #888; 
+  }
+  .no-padding {
+    padding-right: 0 !important;
+  }
+  
+  /* Inactive step */
+  .step-number {
+    width: 30px;
+    height: 30px;
+    color: #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .active-step-number {
+    width: 30px;
+    height: 30px;
+    background-color: #5A4AD1;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .active-connecting-line {
+    margin-left: 0;
+    width: 20px;
+    height: 2px;
+    background-color: #5A4AD1;
+    transform: translateY(-1px); /* Move line up by half its height */
+  }
+
+  .connecting-line {
+    margin-left: 0;
+    width: 20px;
+    height: 2px;
+    transform: translateY(-1px); /* Move line up by half its height */
+  }
+  
+  
+  .form-content {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .centered-content {
+    text-align: center;
+    width: 100%;
+  }
+
+  .error-border {
+    border: 1px solid red;
+  }
+
+  .error-message {
+    color: red;
+  }
+  
+  .subtitle {
+    margin-top: 0;
+    font-size: 12px;
+    color:#888
+  }
+
+  input {
+    border: 1px solid #5A4AD1;
+  }
+  
+  .form-label {
+    //text-align: left !important;
+    font-size: 12px;
+  }
+  ::placeholder {
+    font-size: 12px; 
+    color: #999; 
+  }
+  form {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .btn{
+    margin-top: 10px;
+    width: 100%;
+    background-color: #5A4AD1;
+  }
+  
+  .card-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    width: 150px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .card a{
+    
+    width:100%;
+    height:100%;
+  }
+  
+  .card p {
+    font-weight: bold;
+    margin: 0;
+    font-size: 12px;
+    white-space: normal; 
+  }
+  
+  .card-body {
+    font-size: 11px;
+    color: #333;
+    white-space: normal;
+  }
+
+  .selected-card {
+    border: 2px solid #5A4AD1; /* Change the border color after selection */
+  }
+
+  .custom-icon{
+    color: #5A4AD1;
+  }
